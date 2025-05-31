@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio: Creative Portfolio Concept - TiimeDev Solutions</title>
+    <meta name="description" content="Design study for a dynamic and visually rich portfolio concept for artists, designers, and photographers, emphasizing immersive galleries and personal branding.">
+    <meta name="author" content="TiimeDev Solutions">
+
+    <link rel="icon" href="https://placehold.co/32x32/7c3aed/ffffff?text=TDS" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #0f172a; /* Tailwind slate-900 */
+            color: #cbd5e1; /* Tailwind slate-300 */
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; } /* slate-800 */
+        ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 4px; } /* indigo-500 */
+        ::-webkit-scrollbar-thumb:hover { background: #4f46e5; } /* indigo-600 */
+
+        .primary-button {
+            background-image: linear-gradient(to right, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            background-size: 200% auto; color: #f8fafc; font-weight: 600;
+            transition: background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+        }
+        .primary-button:hover:not(:disabled) {
+            background-position: right center; transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+        }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #a5b4fc; /* indigo-300 */
+            transition: color 0.3s ease;
+        }
+        .back-link:hover {
+            color: #818cf8; /* indigo-400 */
+        }
+        .feature-card {
+            background-color: #1e293b; /* slate-800 */
+            border: 1px solid #334155; /* slate-700 */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.15);
+        }
+        .portfolio-image-display { /* For consistent image display */
+            background-color: #334155; /* Fallback background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #9ca3af;
+            font-size: 0.875rem;
+            width: 100%;
+            aspect-ratio: 4 / 3; /* Or 16/9, 1/1 as needed */
+            overflow: hidden; /* To contain the object-cover image */
+        }
+        .portfolio-image-display img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures image covers the area, might crop */
+        }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-300">
+
+    <header class="bg-slate-800/80 backdrop-blur-md shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white">
+                Tiime<span class="text-indigo-400">Dev</span> <span class="text-sm font-normal text-slate-400">Portfolio</span>
+            </a>
+            <a href="index.html#portfolio" class="back-link text-sm">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
+                </svg>
+                Back to Showcase
+            </a>
+        </div>
+    </header>
+
+    <section class="relative py-20 md:py-32 bg-slate-800 overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-bl from-purple-700 via-pink-700 to-rose-700 transform skew-y-12 translate-x-1/4"></div>
+            <div class="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-tr from-cyan-700 via-teal-700 to-green-700 transform -skew-y-6 -translate-x-1/4"></div>
+        </div>
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <span class="hero-tagline text-purple-400 font-semibold uppercase tracking-wider text-sm">Design Study</span>
+            <h1 class="hero-title text-4xl sm:text-5xl md:text-6xl font-black text-white mt-2 mb-6 drop-shadow-xl">
+                Creative Portfolio Platform
+            </h1>
+            <p class="hero-subtitle text-lg md:text-xl text-slate-300 max-w-3xl mx-auto">
+                A design exploration for a dynamic and visually rich portfolio website tailored for artists, designers, and photographers. This concept emphasizes immersive galleries, smooth animations, and a strong personal brand presence.
+            </p>
+        </div>
+    </section>
+
+    <main class="py-16 md:py-24">
+        <div class="container mx-auto px-6">
+
+            <section class="mb-16 md:mb-24">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-slate-100 mb-6 text-center">Concept & Objectives</h2>
+                <div class="section-content max-w-3xl mx-auto text-slate-400 space-y-4 text-center md:text-left">
+                    <p>The core idea is to provide creatives with a stunning digital stage to showcase their best work. This isn't just about displaying images or projects; it's about creating an experience that reflects the artist's unique style and vision, leaving a lasting impression on visitors, potential clients, or employers.</p>
+                    <p>Key objectives for this portfolio concept include:
+                        <ul class="list-disc list-inside ml-4 text-left">
+                            <li>Creating visually immersive project galleries with flexible layout options.</li>
+                            <li>Incorporating smooth, subtle animations and transitions to enhance user engagement.</li>
+                            <li>Providing robust tools for personal branding and storytelling (e.g., detailed "About Me," blog/insights).</li>
+                            <li>Ensuring an intuitive content management experience for the creative to easily update their work.</li>
+                            <li>Optimizing for fast loading speeds despite high-resolution imagery.</li>
+                        </ul>
+                    </p>
+                </div>
+            </section>
+
+            <section class="mb-16 md:mb-24">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-slate-100 mb-12 text-center">Envisioned Features & Design Approach</h2>
+                <div class="grid md:grid-cols-2 gap-8 lg:gap-12 feature-cards-container">
+                    <div class="feature-card p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-full bg-purple-500/20 mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-purple-400">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-slate-100">Immersive Galleries</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm">Full-screen image viewers, masonry or grid layouts, video integration, and lightbox effects to let the artwork shine. Options for detailed project descriptions and metadata alongside visuals.</p>
+                    </div>
+                    <div class="feature-card p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-full bg-pink-500/20 mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-pink-400">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L1.875 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.898 20.624L16.5 21.75l-.398-1.126a3.375 3.375 0 00-2.455-2.456L12.75 18l1.126-.398a3.375 3.375 0 002.455-2.456L16.5 14.25l.398 1.126a3.375 3.375 0 002.456 2.456L20.25 18l-1.126.398a3.375 3.375 0 00-2.456 2.456z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-slate-100">Elegant Animations & Transitions</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm">Subtle page transitions, parallax scrolling effects, and hover animations on thumbnails and interactive elements to create a polished and engaging user experience without distracting from the content.</p>
+                    </div>
+                    <div class="feature-card p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-full bg-sky-500/20 mr-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-sky-400">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-slate-100">Personal Branding Focus</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm">Customizable "About Me" sections, integration with social media profiles, a dedicated blog for sharing thoughts and processes, and clear contact information to facilitate connections.</p>
+                    </div>
+                    <div class="feature-card p-6 rounded-lg">
+                        <div class="flex items-center mb-4">
+                            <div class="p-3 rounded-full bg-teal-500/20 mr-4">
+                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-teal-400">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-slate-100">Responsive & Performant</h3>
+                        </div>
+                        <p class="text-slate-400 text-sm">A design that adapts flawlessly to all screen sizes, ensuring artwork looks stunning on desktops, tablets, and mobiles. Optimized for fast load times, crucial for retaining visitor attention.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-16 md:mb-24">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-slate-100 mb-12 text-center">Visualizing the Creative Space</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div data-aos="zoom-in" data-aos-duration="700">
+                        <div class="portfolio-image-display rounded-lg shadow-xl">
+                            <img src="assets/images/portfolio homepage.jpg" 
+                                 alt="Creative Portfolio Homepage Mockup"
+                                 onerror="this.parentElement.innerHTML = 'Image: portfolio homepage.jpg not found';">
+                        </div>
+                        <p class="text-center text-slate-400 text-sm mt-2">Conceptual Homepage: Dynamic grid showcasing diverse works.</p>
+                    </div>
+                    <div data-aos="zoom-in" data-aos-duration="700" data-aos-delay="100">
+                        <div class="portfolio-image-display rounded-lg shadow-xl">
+                            <img src="assets/images/project view.png" 
+                                 alt="Project Detail Page Mockup"
+                                 onerror="this.parentElement.innerHTML = 'Image: project view.png not found';">
+                        </div>
+                        <p class="text-center text-slate-400 text-sm mt-2">Project View: Immersive display with space for narrative and details.</p>
+                    </div>
+                    <div data-aos="zoom-in" data-aos-duration="700" data-aos-delay="200">
+                        <div class="portfolio-image-display rounded-lg shadow-xl">
+                            <img src="assets/images/mobile view.png" 
+                                 alt="Mobile Gallery View Mockup"
+                                 onerror="this.parentElement.innerHTML = 'Image: mobile view.png not found';">
+                        </div>
+                        <p class="text-center text-slate-400 text-sm mt-2">Mobile Gallery: Intuitive touch-friendly navigation for on-the-go viewing.</p>
+                    </div>
+                     <div data-aos="zoom-in" data-aos-duration="700" data-aos-delay="300">
+                        <div class="portfolio-image-display rounded-lg shadow-xl">
+                            <img src="assets/images/about page.jpg" 
+                                 alt="Artist About Page Mockup"
+                                 onerror="this.parentElement.innerHTML = 'Image: about page.jpg not found';">
+                        </div>
+                        <p class="text-center text-slate-400 text-sm mt-2">About Section: Clean layout for biography, philosophy, and contact.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-16 md:mb-24">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-slate-100 mb-6 text-center">Technology & Approach</h2>
+                <div class="section-content max-w-3xl mx-auto text-slate-400 space-y-4 text-center md:text-left">
+                    <p>This portfolio concept would be built using modern frontend technologies to ensure a smooth and interactive experience. Key considerations include:</p>
+                    <ul class="list-disc list-inside ml-4 text-left">
+                        <li>Frontend Framework: React, Vue, or Svelte for dynamic components and interactivity.</li>
+                        <li>Styling: Tailwind CSS for utility-first styling, combined with custom CSS for unique design elements.</li>
+                        <li>Animations: GSAP or Framer Motion for sophisticated animations and page transitions.</li>
+                        <li>Content Management: A headless CMS (like Sanity, Contentful, or Strapi) or a static site generator (like Next.js, Nuxt.js, or Eleventy) for easy content updates by the creative.</li>
+                        <li>Image Optimization: Tools and techniques for serving optimized, responsive images to ensure fast load times.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="text-center final-cta-section">
+                <h2 class="text-2xl md:text-3xl font-bold text-slate-100 mb-6">Need a Stunning Portfolio?</h2>
+                <p class="text-slate-400 max-w-xl mx-auto mb-8">If you're a creative professional looking for a portfolio that truly represents your talent and vision, let's collaborate. We can bring these concepts to life for you.</p>
+                <a href="index.html#contact" class="primary-button inline-block text-white font-semibold px-8 py-3 rounded-lg shadow-lg text-lg">
+                    Discuss Your Portfolio Project
+                </a>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-700/50 mt-16 md:mt-24">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
+            <p class="text-sm">&copy; <span id="currentYear"></span> TiimeDev Solutions. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+            });
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Set initial states for GSAP animations
+            gsap.set('.hero-tagline', { opacity: 0, y: 20 });
+            gsap.set('.hero-title', { opacity: 0, x: -30 });
+            gsap.set('.hero-subtitle', { opacity: 0, y: 20 });
+            
+            gsap.utils.toArray('.section-title').forEach(title => {
+                gsap.set(title, { opacity: 0, y: 30 });
+            });
+            gsap.utils.toArray('.section-content').forEach(content => {
+                gsap.set(content, { opacity: 0, y: 20 });
+            });
+            gsap.utils.toArray('.feature-cards-container .feature-card').forEach(card => {
+                gsap.set(card, { opacity: 0, y: 40 });
+            });
+            gsap.utils.toArray('.final-cta-section > *').forEach(elem => {
+                gsap.set(elem, { opacity: 0, y: 30 });
+            });
+
+            // Hero Text Animation
+            const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 0.8 } });
+            heroTl.to('.hero-tagline', { opacity: 1, y: 0, delay: 0.2 })
+                  .to('.hero-title', { opacity: 1, x: 0 }, "-=0.5")
+                  .to('.hero-subtitle', { opacity: 1, y: 0 }, "-=0.5");
+
+            // Section Titles Animation
+            gsap.utils.toArray('.section-title').forEach(title => {
+                gsap.to(title, {
+                    scrollTrigger: {
+                        trigger: title,
+                        start: 'top 85%', 
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.7,
+                    ease: 'power2.out'
+                });
+            });
+            
+            // Section Content Animation
+            gsap.utils.toArray('.section-content').forEach((content, index) => {
+                 gsap.to(content, {
+                    scrollTrigger: {
+                        trigger: content,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none',
+                    },
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    delay: 0.2 + (index * 0.05),
+                    ease: 'power2.out'
+                });
+            });
+
+            // Feature Cards Stagger Animation
+            gsap.to(".feature-cards-container .feature-card", {
+                scrollTrigger: {
+                    trigger: ".feature-cards-container",
+                    start: "top 80%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.15, 
+                ease: "power2.out"
+            });
+            
+            // Final CTA Animation
+             gsap.to(".final-cta-section > *", {
+                scrollTrigger: {
+                    trigger: ".final-cta-section",
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 0.7,
+                stagger: 0.1,
+                ease: "power2.out"
+            });
+
+            const currentYearEl = document.getElementById('currentYear');
+            if (currentYearEl) {
+                currentYearEl.textContent = new Date().getFullYear();
+            }
+        }); // End DOMContentLoaded
+    </script>
+
+</body>
+</html>

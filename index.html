@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiimeDev Solutions - We Transform Websites Into Revenue Machines</title>
+    <meta name="description" content="TiimeDev Solutions rebuilds outdated websites into modern, animated, client-converting platforms for local businesses.">
+    <meta name="keywords" content="web development, website redesign, local business websites, mobile optimization, SEO, TiimeDev Solutions, pricing, packages, FAQ, AI website audit">
+    <meta name="author" content="TiimeDev Solutions">
+
+    <link rel="icon" href="https://placehold.co/32x32/7c3aed/ffffff?text=TDS" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #0f172a; /* Tailwind slate-900 */
+            color: #cbd5e1; /* Tailwind slate-300 */
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e293b; } /* slate-800 */
+        ::-webkit-scrollbar-thumb { background: #6366f1; border-radius: 4px; } /* indigo-500 */
+        ::-webkit-scrollbar-thumb:hover { background: #4f46e5; } /* indigo-600 */
+
+        #hero {
+            position: relative; min-height: 100vh; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hero-video-bg-container {
+            position: absolute; top: 0; left: 0; width: 100%; height: 120%; z-index: -2;
+        }
+        .hero-video-bg { width: 100%; height: 100%; object-fit: cover; opacity: 0.15; }
+        .hero-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(15, 23, 42, 0.7); z-index: -1;
+        }
+        .hero-content { position: relative; z-index: 1; text-align: center; padding: 1.5rem; }
+        .hero-floating-elements {
+            position: absolute; inset: 0; z-index: 0; opacity: 0.2;
+            overflow: hidden; pointer-events: none;
+        }
+        .hero-floating-elements > div {
+            position: absolute; border-radius: 50%; filter: blur(3.5rem);
+            animation: heroFloat 25s infinite ease-in-out alternate;
+        }
+        .hero-float-1 { top: 10%; left: 15%; width: 20rem; height: 20rem; background-color: #6366f1; animation-duration: 22s; }
+        .hero-float-2 { bottom: 10%; right: 15%; width: 16rem; height: 16rem; background-color: #a855f7; animation-duration: 28s; }
+
+        @keyframes heroFloat {
+            0% { transform: translateY(0px) translateX(0px) scale(1); }
+            100% { transform: translateY(-60px) translateX(30px) scale(1.25); }
+        }
+
+        .glossy-header {
+            background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+            position: fixed; top: 1rem; left: 50%; transform: translateX(-50%);
+            width: calc(100% - 2rem); max-width: 1100px; border-radius: 0.75rem;
+            z-index: 1000; padding: 0.5rem 1rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background-image: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(255,255,255,0));
+        }
+        .glossy-header nav { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .glossy-header .nav-links-desktop { display: none; }
+        @media (min-width: 768px) {
+            .glossy-header .nav-links-desktop {
+                display: flex; gap: 1.25rem; position: absolute;
+                left: 50%; transform: translateX(-50%);
+            }
+        }
+        .glossy-header .nav-links-desktop a {
+            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 0.9rem; color: #e2e8f0;
+        }
+        .glossy-header .nav-links-desktop a:hover { color: #818cf8; transform: translateY(-2px); }
+        .glossy-header .logo { flex-shrink: 0; font-size: 1.75rem; color: #f8fafc; }
+        .glossy-header .logo span { color: #818cf8; }
+        .glossy-header .cta-button-desktop { display: none; }
+        @media (min-width: 768px) {
+            .glossy-header .cta-button-desktop {
+                display: inline-block; flex-shrink: 0;
+                padding: 0.5rem 1rem; font-size: 0.9rem;
+            }
+        }
+        .mobile-menu-button { display: block; }
+        @media (min-width: 768px) { .mobile-menu-button { display: none; } }
+        .mobile-menu-button svg { width: 1.75rem; height: 1.75rem; color: #e2e8f0; }
+
+        .mobile-nav {
+            position: fixed; top: 0; left: -100%; width: 100%; height: 100vh;
+            background-color: rgba(15, 23, 42, 0.98); backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); z-index: 999;
+            transition: left 0.3s ease-in-out; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; padding: 2rem;
+        }
+        .mobile-nav.active { left: 0; }
+        .mobile-nav a {
+            display: block; font-size: 1.5rem; color: #e2e8f0; padding: 1rem 0;
+            text-align: center; width: 100%;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+        .mobile-nav a:hover { color: #818cf8; background-color: rgba(51, 65, 85, 0.3); }
+        .mobile-nav .cta-button-mobile { margin-top: 2rem; width: auto; padding: 0.75rem 1.5rem; }
+
+        .revamped-card {
+            border: 1px solid #334155; transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 0.75rem; position: relative; background-color: #1e293b; overflow: hidden;
+        }
+        .revamped-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 12px 24px rgba(99, 102, 241, 0.2);
+        }
+        .card-inner-content {
+            border-radius: inherit; position: relative; z-index: 1;
+            height: 100%; display: flex; flex-direction: column;
+        }
+
+        .service-panel {
+            background-color: #1e293b; border-radius: 0.75rem;
+            border: 1px solid #334155; transition: all 0.3s ease-in-out;
+        }
+        .service-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2), 0 0 0 2px #818cf8;
+            background-color: #334155;
+        }
+        .service-icon-bg { transition: background-color 0.3s ease; }
+        .service-panel:hover .service-icon-bg { background-color: #4338ca; }
+        .service-panel:hover h3 { color: #a5b4fc; }
+
+        .portfolio-card-image-wrapper { aspect-ratio: 16 / 10; overflow: hidden; position: relative; }
+        .portfolio-card-image-wrapper img {
+            width: 100%; height: 100%; object-fit: cover;
+            transition: transform 0.4s ease-out;
+        }
+        .revamped-card:hover .portfolio-card-image-wrapper img { transform: scale(1.05); }
+        .portfolio-card-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(30, 41, 59, 0.8) 0%, rgba(30, 41, 59, 0) 60%);
+            opacity: 1; transition: opacity 0.3s ease;
+        }
+        .portfolio-card-content {
+            padding: 1.5rem; position: relative; background-color: #1e293b;
+            flex-grow: 1; display: flex; flex-direction: column;
+        }
+        .portfolio-card-content .portfolio-button { margin-top: auto; align-self: flex-start; }
+
+        .floating-shape {
+            position: fixed; border-radius: 50%; background-color: rgba(99, 102, 241, 0.06);
+            filter: blur(80px); animation: float 25s infinite ease-in-out; z-index: -3;
+        }
+        .shape1 { width: 450px; height: 450px; top: 15%; left: 8%; animation-duration: 22s; }
+        .shape2 { width: 550px; height: 550px; top: 60%; right: 12%; animation-duration: 30s; animation-delay: -7s; }
+        .shape3 { width: 380px; height: 380px; bottom: 12%; left: 25%; animation-duration: 25s; animation-delay: -12s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.5; }
+            50% { transform: translateY(-55px) translateX(45px) scale(1.25); opacity: 0.8; }
+        }
+
+        .slider-handle::after { background-color: #6366f1; }
+        .swiper-button-next, .swiper-button-prev { color: #818cf8 !important; }
+        .swiper-pagination-bullet-active { background: #818cf8 !important; }
+
+        .primary-button {
+            background-image: linear-gradient(to right, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            background-size: 200% auto; color: #f8fafc; font-weight: 600;
+            transition: background-position 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease;
+        }
+        .primary-button:hover:not(:disabled) {
+            background-position: right center; transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.4);
+        }
+        .primary-button:disabled {
+            opacity: 0.6; cursor: not-allowed;
+            background-image: linear-gradient(to right, #4b5563, #52525b);
+        }
+        .secondary-button {
+            background-color: rgba(129, 140, 248, 0.15); border: 1px solid #818cf8;
+            color: #a5b4fc; transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .secondary-button:hover { background-color: #818cf8; color: #f8fafc; }
+
+        .glassmorphic-card {
+            background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(51, 65, 85, 0.4);
+        }
+
+        #pricing { padding: 6rem 1.5rem; background-color: #0f172a; }
+        .pricing-card {
+            background-color: #1e293b; border: 1px solid #334155;
+            border-radius: 0.75rem; padding: 2rem; text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex; flex-direction: column; height: 100%;
+        }
+        .pricing-card .content-wrapper { flex-grow: 1; display: flex; flex-direction: column; }
+        .pricing-card:hover {
+            transform: translateY(-10px); box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+        }
+        .pricing-card.popular {
+            border-color: #818cf8; box-shadow: 0 0 30px rgba(129, 140, 248, 0.35);
+            transform: scale(1.05) translateY(-5px);
+        }
+        .pricing-card.popular:hover { transform: scale(1.08) translateY(-12px); }
+        .pricing-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; color: #f1f5f9; }
+        .pricing-card .price { font-size: 2.25rem; font-weight: 900; color: #818cf8; margin-bottom: 1rem; }
+        .pricing-card .price span { font-size: 0.875rem; font-weight: 500; color: #94a3b8; }
+        .pricing-card ul { margin-top: 1.25rem; margin-bottom: 1.5rem; list-style: none; padding: 0; text-align: left; }
+        .pricing-card ul li { display: flex; align-items: center; gap: 0.625rem; margin-bottom: 0.625rem; color: #cbd5e1; font-size: 0.875rem; }
+        .pricing-card ul li svg { width: 1.125rem; height: 1.125rem; color: #34d399; flex-shrink: 0; }
+        .pricing-card .cta-wrapper { margin-top: auto; }
+
+        .addons-section { margin-top: 4rem; }
+        .addon-card {
+            background-color: #1e293b; border: 1px solid #334155;
+            border-radius: 0.75rem; padding: 1.5rem;
+            transition: all 0.3s ease-in-out; display: flex; flex-direction: column;
+            justify-content: space-between; height: 100%;
+        }
+        .addon-card:hover {
+            background-color: #334155; transform: translateY(-3px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        .addon-card h4 { font-size: 1.125rem; font-weight: 700; color: #a5b4fc; margin-bottom: 0.5rem; }
+        .addon-card p { font-size: 0.875rem; color: #9ca3af; margin-bottom: 1rem; flex-grow: 1; }
+        .addon-card .addon-price { font-size: 1.25rem; font-weight: 700; color: #6ee7b7; margin-top: auto; }
+
+        #faq { padding: 6rem 1.5rem; background-color: #1e293b; }
+        .faq-item {
+            background-color: #334155; border-radius: 0.5rem;
+            margin-bottom: 1rem; border: 1px solid #475569;
+        }
+        .faq-question {
+            padding: 1.25rem 1.5rem; font-size: 1.125rem; font-weight: 600;
+            color: #f1f5f9; cursor: pointer; display: flex;
+            justify-content: space-between; align-items: center;
+            transition: background-color 0.3s ease;
+        }
+        .faq-question:hover { background-color: #475569; }
+        .faq-answer {
+            padding: 0 1.5rem; /* Initial padding without top/bottom for transition */
+            color: #cbd5e1; max-height: 0;
+            overflow: hidden; line-height: 1.6;
+            transition: max-height 0.4s ease-out, padding-top 0.4s ease-out, padding-bottom 0.4s ease-out;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 400px; /* Ensure this is enough for your longest answer */
+            padding-top: 0.75rem;  /* Add padding when active */
+            padding-bottom: 1.25rem; /* Add padding when active */
+        }
+        .faq-item.active .faq-arrow { transform: rotate(180deg); }
+        .faq-arrow { transition: transform 0.3s ease; }
+        
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
+        }
+
+        .ai-faq-answer-container {
+            margin-top: 2rem; padding: 1.5rem;
+            background-color: rgba(51, 65, 85, 0.5);
+            border-radius: 0.5rem; border: 1px solid #475569;
+        }
+        .ai-faq-answer-container h4 {
+            font-size: 1.25rem; font-weight: 600; color: #a5b4fc; margin-bottom: 1rem;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3); border-radius: 50%;
+            border-top-color: #6366f1; width: 2rem; height: 2rem;
+            animation: spin 1s linear infinite; margin: 1rem auto;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .char-counter { font-size: 0.75rem; color: #94a3b8; margin-top: 0.25rem; text-align: right; }
+
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-300">
+
+    <div class="floating-shape shape1"></div>
+    <div class="floating-shape shape2"></div>
+    <div class="floating-shape shape3"></div>
+
+    <header class="glossy-header">
+        <nav>
+            <a href="#" class="logo">
+                Tiime<span class="text-indigo-400">Dev</span>
+            </a>
+            <div class="nav-links-desktop">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            <a href="#contact" class="primary-button cta-button-desktop">Get a Quote</a>
+        </nav>
+    </header>
+    
+    <nav class="mobile-nav" id="mobileNav" aria-hidden="true">
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#services" class="mobile-nav-link">Services</a>
+        <a href="#portfolio" class="mobile-nav-link">Portfolio</a>
+        <a href="#pricing" class="mobile-nav-link">Pricing</a>
+        <a href="#faq" class="mobile-nav-link">FAQ</a>
+        <a href="#contact" class="primary-button cta-button-mobile mobile-nav-link">Get a Quote</a>
+    </nav>
+
+
+    <section id="hero">
+        <div class="hero-video-bg-container">
+            <video autoplay loop muted playsinline class="hero-video-bg" poster="https://cdn.pixabay.com/video/2022/09/20/131973-751915246_tiny.mp4">
+                <source src="https://cdn.pixabay.com/video/2022/09/20/131973-751915246_tiny.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-floating-elements">
+            <div class="hero-float-1"></div>
+            <div class="hero-float-2"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="text-5xl sm:text-6xl md:text-7xl font-black text-slate-50 drop-shadow-xl hero-headline">
+                We Transform Outdated Websites Into <span class="text-indigo-400">Revenue Machines</span>
+            </h1>
+            <p class="text-lg md:text-xl text-slate-300 max-w-xl lg:max-w-2xl mx-auto mt-6 hero-subheadline">
+                TiimeDev Solutions rebuilds ugly, slow, or broken websites into modern, animated, client-converting platforms.
+            </p>
+            <a href="#contact" class="mt-10 inline-block primary-button text-white font-semibold px-8 py-4 rounded-xl shadow-2xl text-lg hero-cta">
+                Get a Quote
+            </a>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 md:py-28 bg-slate-900/70 backdrop-blur-md">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-100" data-aos="fade-up">
+                Who <span class="text-indigo-400">We Are</span>
+            </h2>
+            <div class="grid md:grid-cols-3 gap-8 items-stretch">
+                <div class="revamped-card p-8 flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center justify-center mb-6 w-16 h-16 rounded-full bg-indigo-500 text-white flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h12A2.25 2.25 0 0020.25 14.25V3m-16.5 0h16.5M3.75 3H2.25m1.5 0H6m12 0h1.5m-1.5 0H18m-6 13.5V21m6-7.5V21m-12-7.5V21" /></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-slate-100">Our Mission</h3>
+                    <p class="text-slate-400">Helping Local Businesses Thrive Online by modernizing their digital presence and attracting more clients effectively.</p>
+                </div>
+                <div class="revamped-card p-8 flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center justify-center mb-6 w-16 h-16 rounded-full bg-purple-500 text-white flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.432 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-slate-100">Our Vision</h3>
+                    <p class="text-slate-400">Every Click Should Convert. We believe a website's success is measured by its ability to turn visitors into loyal customers.</p>
+                </div>
+                <div class="revamped-card p-8 flex flex-col items-center text-center" data-aos="fade-up" data-aos-delay="300">
+                     <div class="flex items-center justify-center mb-6 w-16 h-16 rounded-full bg-pink-500 text-white flex-shrink-0">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" /></svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-3 text-slate-100">Our Specialty</h3>
+                    <p class="text-slate-400">UX-first Modern Designs. We craft intuitive, engaging, and aesthetically pleasing websites that prioritize user experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 md:py-28">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-100" data-aos="fade-up">
+                Our Core <span class="text-purple-400">Expertise</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+                <div class="service-panel" data-aos="fade-up" data-aos-delay="100">
+                    <div class="p-8 flex flex-col sm:flex-row items-start gap-6">
+                        <div class="service-icon-bg flex-shrink-0 w-16 h-16 rounded-lg bg-indigo-500/20 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-indigo-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-100 mb-2 transition-colors duration-300">Website Redesign</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">We transform outdated, underperforming websites into modern, visually stunning, and high-converting digital experiences that captivate your audience and drive growth.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-panel" data-aos="fade-up" data-aos-delay="200">
+                     <div class="p-8 flex flex-col sm:flex-row items-start gap-6">
+                        <div class="service-icon-bg flex-shrink-0 w-16 h-16 rounded-lg bg-purple-500/20 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-purple-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 006 3.75v16.5a2.25 2.25 0 002.25 2.25h7.5A2.25 2.25 0 0018 20.25V3.75a2.25 2.25 0 00-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-100 mb-2 transition-colors duration-300">Mobile Optimization</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Ensuring your website delivers a flawless, intuitive, and engaging experience across all devices, from desktops to smartphones, maximizing reach and user satisfaction.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-panel" data-aos="fade-up" data-aos-delay="300">
+                    <div class="p-8 flex flex-col sm:flex-row items-start gap-6">
+                        <div class="service-icon-bg flex-shrink-0 w-16 h-16 rounded-lg bg-pink-500/20 flex items-center justify-center">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-pink-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-100 mb-2 transition-colors duration-300">Website Maintenance</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Keep your digital presence secure, up-to-date, and performing at its peak with our comprehensive monthly maintenance plans, ensuring smooth operation and peace of mind.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="service-panel" data-aos="fade-up" data-aos-delay="400">
+                     <div class="p-8 flex flex-col sm:flex-row items-start gap-6">
+                        <div class="service-icon-bg flex-shrink-0 w-16 h-16 rounded-lg bg-emerald-500/20 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-emerald-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-100 mb-2 transition-colors duration-300">Local SEO Setup</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Boost your visibility in local search results, connect with nearby customers, and drive foot traffic with our targeted local SEO strategies designed for your community.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="service-panel" data-aos="fade-up" data-aos-delay="500">
+                     <div class="p-8 flex flex-col sm:flex-row items-start gap-6">
+                        <div class="service-icon-bg flex-shrink-0 w-16 h-16 rounded-lg bg-sky-500/20 flex items-center justify-center">
+                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-sky-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-100 mb-2 transition-colors duration-300">Analytics & Tracking</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Gain valuable insights into your website's performance and user behavior with advanced analytics and tracking integration, empowering data-driven decisions.</p>
+                        </div>
+                    </div>
+                </div>
+                 <div class="service-panel" data-aos="fade-up" data-aos-delay="600">
+                     <div class="p-8 flex flex-col sm:flex-row items-start gap-6">
+                        <div class="service-icon-bg flex-shrink-0 w-16 h-16 rounded-lg bg-amber-500/20 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8 h-8 text-amber-400">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-100 mb-2 transition-colors duration-300">Content & Copywriting</h3>
+                            <p class="text-slate-400 text-sm leading-relaxed">Craft compelling narratives and persuasive copy that resonates with your target audience, enhances your brand voice, and drives meaningful engagement and conversions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-20 md:py-28 bg-slate-900/70 backdrop-blur-md">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 text-slate-100" data-aos="fade-up">
+                Our Design <span class="text-indigo-400">Showcase</span>
+            </h2>
+            <p class="text-center text-slate-400 mb-16 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                Explore our conceptual designs and design studies. While we're building our client portfolio, these examples showcase our commitment to modern aesthetics, user experience, and innovative web solutions.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="revamped-card group" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card-inner-content">
+                        <div class="portfolio-card-image-wrapper">
+                            <img src="https://placehold.co/600x400/818cf8/1e293b?text=Modern+E-commerce+UI" alt="Conceptual E-commerce Platform Design" loading="lazy">
+                            <div class="portfolio-card-overlay"></div>
+                        </div>
+                        <div class="portfolio-card-content">
+                            <h3 class="text-xl font-semibold text-slate-100 mb-2">Concept: E-commerce Innovation</h3>
+                            <p class="text-slate-400 text-sm mb-4 flex-grow">A sleek, user-centric e-commerce platform designed for seamless Browse, intuitive navigation, and a delightful shopping experience. Focus on conversion optimization and brand storytelling.</p>
+                            <a href="portfolio-concept-1.html" class="secondary-button inline-block text-sm px-5 py-2.5 rounded-lg portfolio-button">
+                                Explore Design Study
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="revamped-card group" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card-inner-content">
+                        <div class="portfolio-card-image-wrapper">
+                            <img src="https://placehold.co/600x400/a78bfa/1e293b?text=Creative+Portfolio+Layout" alt="Conceptual Creative Portfolio Design" loading="lazy">
+                            <div class="portfolio-card-overlay"></div>
+                        </div>
+                        <div class="portfolio-card-content">
+                            <h3 class="text-xl font-semibold text-slate-100 mb-2">Study: Portfolio for Creatives</h3>
+                            <p class="text-slate-400 text-sm mb-4 flex-grow">A dynamic and visually rich portfolio concept for artists, designers, and photographers. Emphasizes immersive galleries, smooth animations, and a strong personal brand presence.</p>
+                             <a href="portfolio-concept-2.html" class="secondary-button inline-block text-sm px-5 py-2.5 rounded-lg portfolio-button">
+                                View Concept Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="revamped-card group" data-aos="fade-up" data-aos-delay="400">
+                    <div class="card-inner-content">
+                        <div class="portfolio-card-image-wrapper">
+                            <img src="https://placehold.co/600x400/f472b6/1e293b?text=Local+Business+Homepage" alt="Conceptual Local Business Hub Design" loading="lazy">
+                            <div class="portfolio-card-overlay"></div>
+                        </div>
+                        <div class="portfolio-card-content">
+                            <h3 class="text-xl font-semibold text-slate-100 mb-2">Idea: Local Business Hub</h3>
+                            <p class="text-slate-400 text-sm mb-4 flex-grow">A concept for a local business website focusing on community engagement, easy service booking, and clear communication. Designed to build trust and attract local clientele.</p>
+                            <a href="portfolio-concept-3.html" class="secondary-button inline-block text-sm px-5 py-2.5 rounded-lg portfolio-button">
+                                See Mockups
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="testimonials" class="py-20 md:py-28">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-100" data-aos="fade-up">
+                What Our <span class="text-purple-400">Clients Say</span>
+            </h2>
+            <div class="swiper testimonials-slider" data-aos="fade-up">
+                <div class="swiper-wrapper pb-12">
+                    <div class="swiper-slide h-auto">
+                        <div class="glassmorphic-card p-8 rounded-xl shadow-lg text-center h-full flex flex-col">
+                            <img src="https://placehold.co/100x100/6366f1/ffffff?text=SC" alt="Client 1 Photo" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-indigo-400 flex-shrink-0">
+                            <p class="text-slate-300 italic mb-4 text-sm flex-grow">"TiimeDev Solutions completely revamped our online store. Sales are up 50%!"</p>
+                            <h4 class="font-semibold text-slate-100 text-lg mt-auto">Sarah C.</h4>
+                            <p class="text-xs text-indigo-400">Owner, The Cozy Corner Cafe</p>
+                            <img src="https://placehold.co/100x30/ffffff/6366f1?text=Cafe+Logo" alt="Cafe Logo" class="h-6 mx-auto mt-3 opacity-80" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <div class="glassmorphic-card p-8 rounded-xl shadow-lg text-center h-full flex flex-col">
+                            <img src="https://placehold.co/100x100/8b5cf6/ffffff?text=MP" alt="Client 2 Photo" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-purple-400 flex-shrink-0">
+                            <p class="text-slate-300 italic mb-4 text-sm flex-grow">"The new website is incredibly fast and looks amazing on mobile. Our appointment bookings have doubled."</p>
+                            <h4 class="font-semibold text-slate-100 text-lg mt-auto">Mark P.</h4>
+                            <p class="text-xs text-purple-400">Manager, Downtown Dental</p>
+                            <img src="https://placehold.co/100x30/ffffff/8b5cf6?text=Dental+Logo" alt="Dental Logo" class="h-6 mx-auto mt-3 opacity-80" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide h-auto">
+                        <div class="glassmorphic-card p-8 rounded-xl shadow-lg text-center h-full flex flex-col">
+                            <img src="https://placehold.co/100x100/ec4899/ffffff?text=JB" alt="Client 3 Photo" class="w-20 h-20 rounded-full mx-auto mb-5 border-4 border-pink-400 flex-shrink-0">
+                            <p class="text-slate-300 italic mb-4 text-sm flex-grow">"Professional, creative, and delivered on time. TiimeDev understood our vision perfectly."</p>
+                            <h4 class="font-semibold text-slate-100 text-lg mt-auto">Jessica B.</h4>
+                            <p class="text-xs text-pink-400">Founder, Bloom Florists</p>
+                             <img src="https://placehold.co/100x30/ffffff/ec4899?text=Bloom+Logo" alt="Bloom Logo" class="h-6 mx-auto mt-3 opacity-80" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination mt-8 relative"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-100" data-aos="fade-up">
+                Our <span class="text-indigo-400">Packages</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto items-stretch">
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="content-wrapper">
+                        <h3>Starter Site</h3>
+                        <p class="text-slate-400 mb-4 text-sm">Launch your professional online presence quickly and effectively. Ideal for new ventures and essential digital footprints.</p>
+                        <div class="price">$999 <span>onetime</span></div>
+                        <ul>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Sleek Single-Page Design</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Mobile-First Responsive Layout</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Integrated Contact Form</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Foundational SEO Optimization</li>
+                        </ul>
+                    </div>
+                    <div class="cta-wrapper">
+                        <a href="#contact" class="primary-button inline-block text-white font-semibold px-6 py-3 rounded-lg w-full text-sm">Get Started</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card popular" data-aos="fade-up" data-aos-delay="200">
+                    <span class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-indigo-500 text-white text-xs font-semibold px-3 py-1 rounded-full shadow-lg">POPULAR</span>
+                    <div class="content-wrapper">
+                        <h3>Business Growth</h3>
+                        <p class="text-slate-400 mb-4 text-sm">Elevate your brand with a multi-page site, perfect for showcasing services and engaging more clients.</p>
+                        <div class="price">$2499 <span>onetime</span></div>
+                        <ul>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Up to 5 Custom-Designed Pages</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Unique Brand-Aligned Design</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Content Management System</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Advanced SEO & Analytics Setup</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>3 Months Post-Launch Support</li>
+                        </ul>
+                    </div>
+                    <div class="cta-wrapper">
+                        <a href="#contact" class="primary-button inline-block text-white font-semibold px-6 py-3 rounded-lg w-full text-sm">Choose Plan</a>
+                    </div>
+                </div>
+
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="content-wrapper">
+                        <h3>Pro Package</h3>
+                        <p class="text-slate-400 mb-4 text-sm">A comprehensive solution for established businesses seeking maximum online impact and advanced functionalities.</p>
+                        <div class="price">$4999 <span>onetime</span></div>
+                        <ul>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Up to 10 Dynamic Pages</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Premium, Bespoke Design</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Blog & Basic E-commerce Setup</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>In-depth SEO & Content Strategy</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>6 Months Priority Support</li>
+                        </ul>
+                    </div>
+                    <div class="cta-wrapper">
+                         <a href="#contact" class="primary-button inline-block text-white font-semibold px-6 py-3 rounded-lg w-full text-sm">Select Pro</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="content-wrapper">
+                        <h3>Enterprise Solution</h3>
+                        <p class="text-slate-400 mb-4 text-sm">Tailored for large-scale operations with unique challenges and ambitious goals. Full custom development.</p>
+                        <div class="price">Custom <span>quote</span></div>
+                        <ul>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Fully Custom Scope & Pages</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Advanced E-commerce/App Suite</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Dedicated Project Manager & API</li>
+                            <li><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg>Continuous Strategic Partnership</li>
+                        </ul>
+                    </div>
+                    <div class="cta-wrapper">
+                         <a href="#contact" class="primary-button inline-block text-white font-semibold px-6 py-3 rounded-lg w-full text-sm">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="addons-section text-center" data-aos="fade-up" data-aos-delay="500">
+                <h3 class="text-3xl font-bold text-slate-100 mb-4">Optional Monthly Add-ons</h3>
+                <p class="text-slate-400 mb-10 max-w-2xl mx-auto">Supercharge your website with our dedicated monthly services, ensuring it stays fresh, secure, and ahead of the curve.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-4xl mx-auto items-stretch">
+                    <div class="addon-card">
+                        <h4>Website Management</h4>
+                        <p>Peace of mind with regular updates, secure backups, and vigilant uptime monitoring for a consistently smooth online presence.</p>
+                        <div class="addon-price">$99/mo</div>
+                    </div>
+                    <div class="addon-card">
+                        <h4>Emergency Fix Coverage</h4>
+                        <p>Rapid response when you need it most. Get critical site issues resolved with a 24-48 hour turnaround, minimizing downtime.</p>
+                        <div class="addon-price">$149/mo</div>
+                    </div>
+                    <div class="addon-card">
+                        <h4>SEO & Content Growth</h4>
+                        <p>Climb search rankings and engage your audience with strategic keyword targeting, fresh blog content, and continuous on-page SEO.</p>
+                        <div class="addon-price">$299/mo</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="faq">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-slate-100" data-aos="fade-up">
+                Frequently Asked <span class="text-purple-400">Questions</span>
+            </h2>
+            <div class="max-w-3xl mx-auto" data-aos="fade-up">
+                <div class="faq-item">
+                    <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-1">
+                        <span>What kind of businesses do you work with?</span>
+                        <svg class="faq-arrow w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-1">
+                        <p>We specialize in helping local businesses of all sizes modernize their online presence. This includes restaurants, retail stores, service providers (like dentists, lawyers, contractors), and more. If you have an outdated website or no website at all, we can help!</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-2">
+                        <span>How long does a website redesign take?</span>
+                        <svg class="faq-arrow w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-2">
+                        <p>The timeline for a website redesign can vary depending on the complexity of the project, the number of pages, and the features required. A basic starter site might take 2-4 weeks, while a more complex business growth package could take 4-8 weeks. We'll provide a detailed timeline after our initial consultation.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-3">
+                        <span>Do you provide ongoing website maintenance?</span>
+                        <svg class="faq-arrow w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-3">
+                        <p>Yes, we offer monthly website maintenance packages to ensure your site remains secure, up-to-date, and performs optimally. This includes software updates, security monitoring, backups, and content update assistance. Details can be discussed based on your needs. We also offer more advanced monthly add-ons like SEO and E-commerce management.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-4">
+                        <span>Can you help with Search Engine Optimization (SEO)?</span>
+                        <svg class="faq-arrow w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-4">
+                        <p>Absolutely! Basic on-page SEO setup is included in all our packages. For more comprehensive SEO strategies, including local SEO and ongoing optimization, we offer specialized services to help improve your search engine rankings and attract more organic traffic. Check out our "SEO & Content Growth" monthly add-on for more details.</p>
+                    </div>
+                </div>
+                 <div class="faq-item">
+                    <div class="faq-question" role="button" tabindex="0" aria-expanded="false" aria-controls="faq-answer-5">
+                        <span>What's included in the "Free Website Audit"?</span>
+                        <svg class="faq-arrow w-5 h-5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                    <div class="faq-answer" id="faq-answer-5">
+                        <p>Our free website audit involves a comprehensive review of your current website (if you have one). We'll look at design, user experience, mobile-friendliness, loading speed, basic SEO, and identify areas for improvement. We'll then provide you with a summary of our findings and recommendations, with no obligation.</p>
+                    </div>
+                </div>
+                <div class="mt-12" data-aos="fade-up" data-aos-delay="100">
+                    <h3 class="text-2xl font-semibold text-center text-slate-100 mb-6">Still have questions?</h3>
+                    <div class="max-w-xl mx-auto">
+                        <div class="flex flex-col sm:flex-row gap-2">
+                            <input type="text" id="aiFaqInput" placeholder="✨ Ask our AI Assistant... (max 250 chars)" maxlength="250" class="flex-grow px-4 py-2.5 rounded-md bg-slate-700 border-slate-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-100 placeholder-slate-400 transition-all">
+                            <button id="askAiFaqButton" class="primary-button px-5 py-2.5 rounded-md text-sm w-full sm:w-auto">Ask AI</button>
+                        </div>
+                        <div id="aiFaqCharCounter" class="char-counter">0 / 250</div>
+                        <div id="aiFaqAnswerContainer" class="ai-faq-answer-container mt-4 hidden">
+                            <h4 class="text-lg font-semibold text-indigo-300 mb-2">AI Assistant's Response:</h4>
+                            <div id="aiFaqSpinner" class="spinner hidden"></div>
+                            <p id="aiFaqAnswer" class="text-slate-300 text-sm"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 md:py-28">
+        <div class="container mx-auto px-6">
+            <div class="bg-slate-800 text-slate-100 py-12 md:py-16 px-6 md:px-12 rounded-xl max-w-2xl mx-auto shadow-2xl border border-slate-700" data-aos="zoom-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-3">
+                    Let's Discuss <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Your Project</span>
+                </h2>
+                <p class="text-center text-slate-400 mb-10">Ready to transform your online presence? Tell us about your project and we'll be in touch!</p>
+                <form id="contactForm" method="POST" action="https://formspree.io/f/xgvywvrn" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-slate-300 mb-1">Full Name</label>
+                        <input type="text" name="name" id="name" required class="mt-1 block w-full px-4 py-2.5 rounded-md bg-slate-700 border-slate-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm text-slate-100 placeholder-slate-400 transition-all">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-300 mb-1">Email Address</label>
+                        <input type="email" name="email" id="email" required class="mt-1 block w-full px-4 py-2.5 rounded-md bg-slate-700 border-slate-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm text-slate-100 placeholder-slate-400 transition-all">
+                    </div>
+                    <div>
+                        <label for="business_type" class="block text-sm font-medium text-slate-300 mb-1">Type of Business</label>
+                        <input type="text" name="business_type" id="business_type" class="mt-1 block w-full px-4 py-2.5 rounded-md bg-slate-700 border-slate-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm text-slate-100 placeholder-slate-400 transition-all">
+                    </div>
+                    <div>
+                        <label for="business_website" class="block text-sm font-medium text-slate-300 mb-1">Current Business Website (Optional)</label>
+                        <input type="url" name="business_website" id="business_website" class="mt-1 block w-full px-4 py-2.5 rounded-md bg-slate-700 border-slate-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm text-slate-100 placeholder-slate-400 transition-all">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-slate-300 mb-1">Tell Us About Your Project & Goals</label>
+                        <textarea name="message" id="message" rows="4" required placeholder="What are you looking to achieve? What features are important to you?" class="mt-1 block w-full px-4 py-2.5 rounded-md bg-slate-700 border-slate-600 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 shadow-sm text-slate-100 placeholder-slate-400 transition-all"></textarea>
+                    </div>
+                    <div class="pt-2">
+                        <button type="submit" id="contactFormSubmitButton" class="w-full primary-button text-white font-semibold px-6 py-3 rounded-lg shadow-xl text-base">
+                            Send Project Inquiry
+                        </button>
+                         <p id="contactFormStatus" class="text-sm text-center mt-3"></p>
+                    </div>
+                </form>
+                 <p class="text-center text-slate-500 mt-8 text-xs">Or email us directly at: <a href="mailto:hello@tiimedev.com" class="text-indigo-400 hover:underline">hello@tiimedev.com</a></p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 border-t border-slate-700/50">
+        <div class="container mx-auto px-6 py-10 text-center text-slate-500">
+            <p class="text-sm">&copy; <span id="currentYear"></span> TiimeDev Solutions. All Rights Reserved.</p>
+            <p class="text-xs mt-1">Crafting Digital Excellence, One Pixel at a Time.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Ensure DOM is fully loaded before running scripts
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 800, once: true, offset: 50 });
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Parallax Hero Effect
+            gsap.to(".hero-video-bg-container", {
+                scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: 0.5 },
+                yPercent: 15
+            });
+            gsap.to(".hero-content", {
+                scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: 0.8 },
+                yPercent: 25, opacity: 0,
+            });
+            gsap.to(".hero-floating-elements > div", {
+                scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: 1 },
+                yPercent: (i) => (i % 2 === 0 ? 30 : 50),
+                xPercent: (i) => (i % 2 === 0 ? -15 : 15),
+                scale: 1.3, opacity: 0,
+            });
+
+            const tlHeroIntro = gsap.timeline({ defaults: { ease: 'power3.out' } });
+            tlHeroIntro.from('.hero-headline', { opacity: 0, x: -40, duration: 0.9, delay: 0.3 })
+                .from('.hero-subheadline', { opacity: 0, x: -40, duration: 0.7 }, '-=0.4')
+                .from('.hero-cta', { opacity: 0, y: 25, duration: 0.7 }, '-=0.4');
+            
+            const testimonialsSlider = new Swiper('.testimonials-slider', {
+                loop: true, slidesPerView: 1, spaceBetween: 24,
+                autoplay: { delay: 5000, disableOnInteraction: false },
+                pagination: { el: '.swiper-pagination', clickable: true, dynamicBullets: true },
+                navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
+                breakpoints: {
+                    640: { slidesPerView: 1, spaceBetween: 24 },
+                    768: { slidesPerView: 2, spaceBetween: 30 },
+                    1024: { slidesPerView: 2, spaceBetween: 30 }
+                },
+                watchOverflow: true, 
+                grabCursor: true,
+            });
+
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileNav = document.querySelector('.mobile-nav');
+            const navLinks = document.querySelectorAll('a[href^="#"]'); // Includes logo link if it starts with #
+
+            if (mobileMenuButton && mobileNav) {
+                mobileMenuButton.addEventListener('click', () => {
+                    const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true' || false;
+                    mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                    mobileNav.classList.toggle('active');
+                    mobileNav.setAttribute('aria-hidden', mobileNav.classList.contains('active') ? 'false' : 'true');
+                    document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+                });
+            }
+            
+            navLinks.forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const hrefValue = this.getAttribute('href');
+                    if (hrefValue && hrefValue.startsWith('#')) {
+                        e.preventDefault();
+                        
+                        if (hrefValue === "#") { // Handle logo link or other href="#" links
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        } else {
+                            const targetElement = document.querySelector(hrefValue);
+                            if (targetElement) {
+                                const headerOffset = document.querySelector('.glossy-header')?.offsetHeight + 20 || 70;
+                                const elementPosition = targetElement.getBoundingClientRect().top;
+                                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                                
+                                window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+                            }
+                        }
+
+                        if (mobileNav && mobileNav.classList.contains('active') && this.closest('.mobile-nav')) {
+                            mobileMenuButton.click();
+                        }
+                    }
+                });
+            });
+
+            const currentYearEl = document.getElementById('currentYear');
+            if (currentYearEl) {
+                currentYearEl.textContent = new Date().getFullYear();
+            }
+
+            document.querySelectorAll('.slider-handle').forEach(handle => {
+                let isDragging = false;
+                const slider = handle.closest('.before-after-slider');
+                const beforeImage = slider ? slider.querySelector(`#${handle.dataset.sliderId}`) : null;
+                if (!slider || !beforeImage) return;
+
+                const startDrag = (e) => { isDragging = true; slider.classList.add('dragging'); document.body.style.userSelect = 'none'; }
+                const stopDrag = () => { if (isDragging) { isDragging = false; slider.classList.remove('dragging'); document.body.style.userSelect = ''; } }
+                const doDrag = (clientX) => { if (!isDragging) return; moveSlider(clientX); }
+                
+                handle.addEventListener('mousedown', startDrag);
+                handle.addEventListener('touchstart', (e) => startDrag(e.touches[0]), { passive: true });
+                document.addEventListener('mouseup', stopDrag);
+                document.addEventListener('touchend', stopDrag);
+                document.addEventListener('mousemove', (e) => doDrag(e.clientX));
+                document.addEventListener('touchmove', (e) => doDrag(e.touches[0].clientX), { passive: true });
+
+                function moveSlider(xPosition) {
+                    const rect = slider.getBoundingClientRect();
+                    if (rect.width === 0) return;
+                    let x = xPosition - rect.left;
+                    x = Math.max(0, Math.min(x, rect.width)); 
+                    const percentage = (x / rect.width) * 100;
+                    handle.style.left = `${percentage}%`;
+                    beforeImage.style.clipPath = `polygon(0 0, ${percentage}% 0, ${percentage}% 100%, 0 100%)`;
+                }
+            });
+            
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach((item, index) => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+                if (!question || !answer) return;
+
+                const answerId = `faq-answer-${index + 1}`;
+                answer.setAttribute('id', answerId);
+                question.setAttribute('aria-controls', answerId);
+
+                question.addEventListener('click', () => toggleFaqItem(item, faqItems));
+                question.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        toggleFaqItem(item, faqItems);
+                    }
+                });
+            });
+
+            function toggleFaqItem(itemToToggle, allItems) {
+                const question = itemToToggle.querySelector('.faq-question');
+                const isOpening = !itemToToggle.classList.contains('active');
+
+                allItems.forEach(item => {
+                    if (item !== itemToToggle) {
+                        item.classList.remove('active');
+                        item.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                itemToToggle.classList.toggle('active', isOpening);
+                question.setAttribute('aria-expanded', isOpening);
+            }
+
+            const contactForm = document.getElementById('contactForm');
+            const contactFormSubmitButton = document.getElementById('contactFormSubmitButton');
+            const contactFormStatus = document.getElementById('contactFormStatus');
+
+            if (contactForm && contactFormSubmitButton && contactFormStatus) {
+                contactForm.addEventListener('submit', async function(event) {
+                    event.preventDefault(); 
+                    
+                    contactFormStatus.textContent = 'Sending your inquiry...';
+                    contactFormStatus.className = 'text-sm text-center mt-3 text-slate-400';
+                    contactFormSubmitButton.disabled = true;
+                    contactFormSubmitButton.textContent = 'Submitting...';
+
+                    const formData = new FormData(contactForm);
+                    const formActionUrl = contactForm.getAttribute('action'); 
+
+                    if (!formActionUrl || formActionUrl === "YOUR_FORMSPREE_ENDPOINT_HERE_OR_OTHER_SERVICE") {
+                        console.error("Form action URL is not set. Please update it in the HTML.");
+                        contactFormStatus.textContent = 'Form configuration error. Please contact support.';
+                        contactFormStatus.className = 'text-sm text-center mt-3 text-red-400';
+                        contactFormSubmitButton.disabled = false;
+                        contactFormSubmitButton.textContent = 'Send Project Inquiry';
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch(formActionUrl, {
+                            method: 'POST',
+                            body: formData,
+                            headers: { 'Accept': 'application/json' }
+                        });
+
+                        if (response.ok) {
+                            contactFormStatus.textContent = 'Thank you! Your inquiry has been sent. We\'ll be in touch soon.';
+                            contactFormStatus.className = 'text-sm text-center mt-3 text-green-400';
+                            contactForm.reset();
+                            const aiFaqInput = document.getElementById('aiFaqInput');
+                            const aiFaqCharCounter = document.getElementById('aiFaqCharCounter');
+                            if (aiFaqInput) aiFaqInput.value = ''; 
+                            if (aiFaqCharCounter) aiFaqCharCounter.textContent = '0 / 250';
+                        } else {
+                            let errorMessage = 'Form submission failed. Please try again.';
+                            try {
+                                const errorData = await response.json();
+                                if (errorData && errorData.errors && errorData.errors.length > 0) {
+                                    errorMessage = errorData.errors.map(e => e.message || e.error || 'Unknown error').join(', ');
+                                } else if (errorData && errorData.error) {
+                                    errorMessage = errorData.error;
+                                }
+                            } catch (parseError) { 
+                                console.warn("Could not parse error response as JSON:", parseError);
+                            }
+                            throw new Error(errorMessage);
+                        }
+                    } catch (error) {
+                        console.error('Error submitting form:', error);
+                        contactFormStatus.textContent = `Sorry, there was an error: ${error.message}. Please try again or email us directly.`;
+                        contactFormStatus.className = 'text-sm text-center mt-3 text-red-400';
+                    } finally {
+                        contactFormSubmitButton.disabled = false;
+                        contactFormSubmitButton.textContent = 'Send Project Inquiry';
+                    }
+                });
+            }
+
+            const askAiFaqButton = document.getElementById('askAiFaqButton');
+            const aiFaqInput = document.getElementById('aiFaqInput');
+            const aiFaqAnswerContainer = document.getElementById('aiFaqAnswerContainer');
+            const aiFaqSpinner = document.getElementById('aiFaqSpinner');
+            const aiFaqAnswer = document.getElementById('aiFaqAnswer');
+            const aiFaqCharCounter = document.getElementById('aiFaqCharCounter');
+
+            let faqRequestCount = 0;
+            const MAX_FAQ_REQUESTS = 5;
+
+            if (aiFaqInput && aiFaqCharCounter) {
+                aiFaqInput.addEventListener('input', () => {
+                    const currentLength = aiFaqInput.value.length;
+                    aiFaqCharCounter.textContent = `${currentLength} / 250`;
+                    if (currentLength > 250) {
+                        aiFaqCharCounter.classList.add('text-red-400');
+                    } else {
+                        aiFaqCharCounter.classList.remove('text-red-400');
+                    }
+                });
+            }
+
+            if (askAiFaqButton && aiFaqInput && aiFaqAnswerContainer && aiFaqSpinner && aiFaqAnswer) {
+                askAiFaqButton.addEventListener('click', async () => {
+                    const userQuestion = aiFaqInput.value.trim();
+                    aiFaqAnswer.classList.remove('text-red-400', 'text-amber-400'); // Reset error colors
+
+                    if (userQuestion.length > 250) {
+                        aiFaqAnswer.textContent = "Your question is too long. Please keep it under 250 characters.";
+                        aiFaqAnswerContainer.classList.remove('hidden');
+                        aiFaqSpinner.classList.add('hidden');
+                        aiFaqAnswer.classList.add('text-red-400');
+                        return;
+                    }
+                    if (!userQuestion) {
+                        aiFaqAnswer.textContent = "Please type your question first.";
+                        aiFaqAnswerContainer.classList.remove('hidden');
+                        aiFaqSpinner.classList.add('hidden');
+                        return;
+                    }
+                    if (faqRequestCount >= MAX_FAQ_REQUESTS) {
+                        aiFaqAnswer.textContent = "You've reached the maximum number of AI questions for this session. Please try again later or contact us directly.";
+                        aiFaqAnswerContainer.classList.remove('hidden');
+                        aiFaqSpinner.classList.add('hidden');
+                        aiFaqAnswer.classList.add('text-amber-400');
+                        return;
+                    }
+                    
+                    aiFaqAnswerContainer.classList.remove('hidden');
+                    aiFaqSpinner.classList.remove('hidden');
+                    aiFaqAnswer.textContent = '';
+                    askAiFaqButton.disabled = true;
+                    askAiFaqButton.textContent = 'Thinking...';
+                    faqRequestCount++;
+
+                    const prompt = `You are a friendly and helpful AI assistant for TiimeDev Solutions, a web development agency.
+                    Your role is to answer questions ONLY about:
+                    1. TiimeDev Solutions' services: website redesign, mobile optimization, website maintenance, local SEO setup, analytics & tracking, content & copywriting.
+                    2. TiimeDev Solutions' pricing packages (Starter, Business Growth, Pro, Enterprise) and monthly add-ons (Website Management, Emergency Fix Coverage, SEO & Content Growth).
+                    3. General web development concepts or advice if directly relevant to what a local business might ask when considering a new website or redesign.
+                    DO NOT discuss TiimeDev Solutions' internal operations, specific staff details, owner information, client lists, or any other private/sensitive/confidential business information. If asked for such information, politely state that you cannot provide those details.
+                    If a question is outside the topics above (e.g., asking for code, personal opinions, unrelated topics), politely decline to answer and suggest they ask a question related to web development services or TiimeDev Solutions, or contact the company directly for specific needs.
+                    Keep your answers concise, helpful, and professional.
+
+                    A user has asked: "${userQuestion}"
+
+                    Provide your answer:`;
+
+                    try {
+                        const apiKey = "AIzaSyCD5LVEjrju_kzmn-26K3Pp-umJ2P_a8YA"; // Injected by environment
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${apiKey}`;
+                        const payload = {
+                            contents: [{ role: "user", parts: [{ text: prompt }] }],
+                            generationConfig: { temperature: 0.5, maxOutputTokens: 200 }
+                        };
+                        const response = await fetch(apiUrl, {
+                            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+                        });
+                        if (!response.ok) {
+                            const errorText = await response.text(); 
+                            console.error(`API Error ${response.status}: ${errorText}`);
+                            throw new Error(`AI service is temporarily unavailable (Status: ${response.status}). Please try again soon.`);
+                        }
+                        const result = await response.json();
+                        
+                        if (result.candidates && result.candidates[0]?.content?.parts[0]?.text) {
+                            aiFaqAnswer.textContent = result.candidates[0].content.parts[0].text;
+                        } else {
+                            aiFaqAnswer.textContent = 'Sorry, I couldn\'t process that question right now. Please try rephrasing or contact us directly.';
+                            console.error("No content in Gemini FAQ response:", result);
+                        }
+                    } catch (error) {
+                        console.error('Error fetching AI FAQ answer:', error);
+                        aiFaqAnswer.textContent = `Sorry, an error occurred with the AI Assistant: ${error.message}. Please try again later or contact us directly.`;
+                    } finally {
+                        aiFaqSpinner.classList.add('hidden');
+                        askAiFaqButton.disabled = false;
+                        askAiFaqButton.textContent = 'Ask AI';
+                    }
+                });
+            }
+
+            const schema = {
+              "@context": "https://schema.org", "@type": "WebPage",
+              "name": "TiimeDev Solutions - Modern Web Development & Redesign",
+              "description": "TiimeDev Solutions transforms outdated websites for local businesses with modern design and cutting-edge technology. Explore our services, pricing, and FAQs.",
+              "url": "https://www.tiimedev.solutions", 
+              "publisher": { "@type": "Organization", "name": "TiimeDev Solutions", "logo": { "@type": "ImageObject", "url": "https://www.tiimedev.solutions/logo.png" }},
+              "mainEntity": [
+                {
+                    "@type": "Service", "serviceType": "Web Development", "provider": { "@type": "Organization", "name": "TiimeDev Solutions" },
+                    "areaServed": { "@type": "Country", "name": "USA" }, 
+                    "description": "Full-stack web development specializing in modernizing websites. Services: website redesign, mobile optimization, maintenance, local SEO, client tracking.",
+                    "name": "Website Modernization & Development"
+                },
+                {
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        { "@type": "Question", "name": "What kind of businesses do you work with?", "acceptedAnswer": { "@type": "Answer", "text": "We specialize in helping local businesses of all sizes modernize their online presence. This includes restaurants, retail stores, service providers (like dentists, lawyers, contractors), and more. If you have an outdated website or no website at all, we can help!" }},
+                        { "@type": "Question", "name": "How long does a website redesign take?", "acceptedAnswer": { "@type": "Answer", "text": "The timeline for a website redesign can vary depending on the complexity of the project, the number of pages, and the features required. A basic starter site might take 2-4 weeks, while a more complex business growth package could take 4-8 weeks. We'll provide a detailed timeline after our initial consultation." }},
+                        { "@type": "Question", "name": "Do you provide ongoing website maintenance?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, we offer monthly website maintenance packages to ensure your site remains secure, up-to-date, and performs optimally. This includes software updates, security monitoring, backups, and content update assistance. Details can be discussed based on your needs. We also offer more advanced monthly add-ons like SEO and E-commerce management." }},
+                        { "@type": "Question", "name": "Can you help with Search Engine Optimization (SEO)?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutely! Basic on-page SEO setup is included in all our packages. For more comprehensive SEO strategies, including local SEO and ongoing optimization, we offer specialized services to help improve your search engine rankings and attract more organic traffic. Check out our \"SEO & Content Growth\" monthly add-on for more details." }},
+                        { "@type": "Question", "name": "What's included in the \"Free Website Audit\"?", "acceptedAnswer": { "@type": "Answer", "text": "Our free website audit involves a comprehensive review of your current website (if you have one). We'll look at design, user experience, mobile-friendliness, loading speed, basic SEO, and identify areas for improvement. We'll then provide you with a summary of our findings and recommendations, with no obligation." }}
+                    ]
+                }
+              ]
+            };
+            const scriptTag = document.createElement('script');
+            scriptTag.type = 'application/ld+json';
+            scriptTag.text = JSON.stringify(schema);
+            if (!document.querySelector('script[type="application/ld+json"]')) {
+                document.head.appendChild(scriptTag);
+            }
+        }); // End of DOMContentLoaded
+    </script>
+</body>
+</html>
